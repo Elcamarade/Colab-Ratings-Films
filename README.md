@@ -48,8 +48,8 @@ cd Colab-Ratings-Films
 
 Proiect realizat de:
 
-* Nume Student 1
-* Nume Student 2
+* Vacarciuc Ion
+* Botnari Oleg
 
 Colegiul Universității Tehnice a Moldovei
 Specialitatea: **Dezvoltarea Aplicațiilor Web**
