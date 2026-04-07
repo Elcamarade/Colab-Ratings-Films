@@ -1,3 +1,4 @@
+/* ── RESET & BASE ── */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -5,24 +6,26 @@
 }
 
 :root {
-    --red:      #e50914;
+    --red: #e50914;
     --red-dark: #b0060f;
-    --bg:       #080808;
-    --bg1:      #0f0f0f;
-    --bg2:      #161616;
-    --bg3:      #1e1e1e;
-    --border:   rgba(255,255,255,0.07);
-    --border2:  rgba(255,255,255,0.13);
-    --text:     #f0f0f0;
-    --muted:    #777;
-    --muted2:   #444;
+    --bg: #080808;
+    --bg1: #0f0f0f;
+    --bg2: #161616;
+    --bg3: #1e1e1e;
+    --border: rgba(255, 255, 255, 0.07);
+    --border2: rgba(255, 255, 255, 0.13);
+    --text: #f0f0f0;
+    --muted: #777;
+    --muted2: #444;
     --font-display: 'Bebas Neue', sans-serif;
-    --font-body:    'DM Sans', sans-serif;
-    --radius:   8px;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 8px;
     --radius-lg: 12px;
 }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: var(--font-body);
@@ -39,7 +42,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(8,8,8,0.92);
+    background: rgba(8, 8, 8, 0.92);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -101,8 +104,14 @@ header {
     gap: 6px;
 }
 
-.nav-link:hover { color: var(--text); background: var(--bg3); }
-.nav-link.active { color: var(--text); }
+.nav-link:hover {
+    color: var(--text);
+    background: var(--bg3);
+}
+
+.nav-link.active {
+    color: var(--text);
+}
 
 .fav-count {
     background: var(--red);
@@ -113,4 +122,143 @@ header {
     border-radius: 99px;
     min-width: 18px;
     text-align: center;
+}
+
+/* ── HERO ── */
+.hero {
+    background: var(--bg1);
+    border-bottom: 1px solid var(--border);
+    padding: 52px 24px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+    color: var(--text);
+}
+
+.hero-title em {
+    color: var(--red);
+    font-style: normal;
+}
+
+/* ── SEARCH ── */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-lg);
+    padding: 0 16px;
+    max-width: 560px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box:focus-within {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.12);
+}
+
+.search-box svg {
+    color: var(--muted);
+    flex-shrink: 0;
+}
+
+#search {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 14px 0;
+}
+
+#search::placeholder {
+    color: var(--muted2);
+}
+
+.search-clear {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.search-clear:hover {
+    color: var(--text);
+}
+
+.search-clear.hidden {
+    display: none;
+}
+
+/* ── FILTERS ── */
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: 99px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.18s;
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    border-color: rgba(229, 9, 20, 0.4);
+    color: var(--text);
+    background: rgba(229, 9, 20, 0.06);
+}
+
+.filter-btn.active {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
 }
