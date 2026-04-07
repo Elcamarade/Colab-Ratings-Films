@@ -123,3 +123,142 @@ header {
     min-width: 18px;
     text-align: center;
 }
+
+/* ── HERO ── */
+.hero {
+    background: var(--bg1);
+    border-bottom: 1px solid var(--border);
+    padding: 52px 24px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+    color: var(--text);
+}
+
+.hero-title em {
+    color: var(--red);
+    font-style: normal;
+}
+
+/* ── SEARCH ── */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-lg);
+    padding: 0 16px;
+    max-width: 560px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-box:focus-within {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.12);
+}
+
+.search-box svg {
+    color: var(--muted);
+    flex-shrink: 0;
+}
+
+#search {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    padding: 14px 0;
+}
+
+#search::placeholder {
+    color: var(--muted2);
+}
+
+.search-clear {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.search-clear:hover {
+    color: var(--text);
+}
+
+.search-clear.hidden {
+    display: none;
+}
+
+/* ── FILTERS ── */
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: 99px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.18s;
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    border-color: rgba(229, 9, 20, 0.4);
+    color: var(--text);
+    background: rgba(229, 9, 20, 0.06);
+}
+
+.filter-btn.active {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+}
