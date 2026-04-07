@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Film Rating</title>
 </head>
+
 <body>
-    
-     <header>
+
+    <header>
         <div class="header-inner">
             <div class="logo">
                 <div class="logo-icon">
@@ -26,5 +28,29 @@
         </div>
     </header>
 
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-inner">
+            <p class="hero-label">Descoperă cinematografia mondială</p>
+            <h1 class="hero-title">Cele mai bune<br><em>filme</em> acum</h1>
+
+            <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" id="search" placeholder="Caută după titlu, gen, an...">
+                <span id="search-clear" class="search-clear hidden">✕</span>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-rate="all">Toate</button>
+                <button class="filter-btn" data-rate="7">★ 7+ Excelent</button>
+                <button class="filter-btn" data-rate="5">★ 5+ Bun</button>
+                <button class="filter-btn" data-rate="0">★ Sub 5</button>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

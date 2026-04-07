@@ -1,3 +1,4 @@
+/* ── RESET & BASE ── */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -5,24 +6,26 @@
 }
 
 :root {
-    --red:      #e50914;
+    --red: #e50914;
     --red-dark: #b0060f;
-    --bg:       #080808;
-    --bg1:      #0f0f0f;
-    --bg2:      #161616;
-    --bg3:      #1e1e1e;
-    --border:   rgba(255,255,255,0.07);
-    --border2:  rgba(255,255,255,0.13);
-    --text:     #f0f0f0;
-    --muted:    #777;
-    --muted2:   #444;
+    --bg: #080808;
+    --bg1: #0f0f0f;
+    --bg2: #161616;
+    --bg3: #1e1e1e;
+    --border: rgba(255, 255, 255, 0.07);
+    --border2: rgba(255, 255, 255, 0.13);
+    --text: #f0f0f0;
+    --muted: #777;
+    --muted2: #444;
     --font-display: 'Bebas Neue', sans-serif;
-    --font-body:    'DM Sans', sans-serif;
-    --radius:   8px;
+    --font-body: 'DM Sans', sans-serif;
+    --radius: 8px;
     --radius-lg: 12px;
 }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: var(--font-body);
@@ -39,7 +42,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(8,8,8,0.92);
+    background: rgba(8, 8, 8, 0.92);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -101,8 +104,14 @@ header {
     gap: 6px;
 }
 
-.nav-link:hover { color: var(--text); background: var(--bg3); }
-.nav-link.active { color: var(--text); }
+.nav-link:hover {
+    color: var(--text);
+    background: var(--bg3);
+}
+
+.nav-link.active {
+    color: var(--text);
+}
 
 .fav-count {
     background: var(--red);
