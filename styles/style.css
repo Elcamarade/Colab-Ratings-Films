@@ -386,3 +386,119 @@ main {
     background: var(--red);
     color: #fff;
 }
+
+/* Modal body layout */
+.modal-header {
+    display: flex;
+    gap: 0;
+}
+
+.modal-poster-wrap {
+    flex-shrink: 0;
+    width: 200px;
+}
+
+.modal-poster-wrap img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px 0 0 0;
+}
+
+.modal-meta {
+    flex: 1;
+    padding: 24px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-meta h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    padding-right: 32px;
+}
+
+.modal-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+}
+
+.modal-overview {
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.65;
+    flex: 1;
+}
+
+.btn-fav {
+    align-self: flex-start;
+    padding: 9px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-fav:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+}
+
+.btn-fav.active {
+    background: rgba(229, 9, 20, 0.15);
+    border-color: rgba(229, 9, 20, 0.4);
+    color: var(--red);
+}
+
+.modal-trailer {
+    padding: 0 20px 20px;
+}
+
+.trailer-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+
+.modal-trailer iframe {
+    width: 100%;
+    height: 280px;
+    border: none;
+    border-radius: var(--radius);
+    display: block;
+}
+
+.no-trailer {
+    text-align: center;
+    color: var(--muted);
+    padding: 24px;
+    font-size: 13px;
+    background: var(--bg3);
+    border-radius: var(--radius);
+}
