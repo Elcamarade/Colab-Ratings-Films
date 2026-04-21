@@ -262,3 +262,44 @@ header {
     border-color: var(--red);
     color: #fff;
 }
+
+/* ── RESULTS BAR ── */
+.results-bar {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 24px;
+}
+
+.results-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.results-count {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.sort-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+#sort-select {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+}
