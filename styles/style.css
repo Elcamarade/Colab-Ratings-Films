@@ -466,6 +466,49 @@ main {
     color: #f87171;
 }
 
+/* ── STATES ── */
+.loading {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 80px 0;
+    color: var(--muted);
+}
+
+.spinner {
+    width: 34px;
+    height: 34px;
+    border: 2.5px solid var(--bg3);
+    border-top-color: var(--red);
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.no-results, .error-msg {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 0;
+    color: var(--muted);
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.no-results span, .error-msg span {
+    font-size: 36px;
+}
+
+
 /* ── MODAL ── */
 .modal {
     position: fixed;
