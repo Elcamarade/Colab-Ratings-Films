@@ -277,3 +277,49 @@ function closeModal() {
     document.body.style.overflow = "";
     modalBody.innerHTML = "";
 }
+
+/* ─────────────────────────────────────────────
+   FAVORITES PANEL
+───────────────────────────────────────────── */
+function renderFavPanel() {
+    const favs = getFavs();
+
+    if (favs.length === 0) {
+        favList.innerHTML = `<p class="fav-empty">Nicio favoritã adăugată.</p>`;
+        return;
+    }
+
+    favList.innerHTML = "";
+    const frag = document.createDocumentFragment();
+
+    favs.forEach(movie => {
+        const year = movie.release_date ? movie.release_date.slice(0, 4) : "—";
+        const el = document.createElement("div");
+        el.classList.add("fav-item");
+
+        el.innerHTML = `
+            <img src="${movie.poster_path ? IMG_URL + movie.poster_path : NO_IMG}" alt="${movie.title}">
+            <div class="fav-item-info">
+                <h4>${movie.title}</h4>
+                <span class="${getColor(movie.vote_average)}">★ ${movie.vote_average.toFixed(1)} · ${year}</span>
+            </div>
+            <button class="fav-remove" data-id="${movie.id}" title="Elimină">✕</button>
+        `;
+
+        el.addEventListener("click", (e) => {
+            if (e.target.closest(".fav-remove")) return;
+            favPanel.classList.add("hidden");
+            openMovieDetails(movie);
+        });
+
+        el.querySelector(".fav-remove").addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleFavorite(movie);
+            renderFavPanel();
+        });
+
+        frag.appendChild(el);
+    });
+
+    favList.appendChild(frag);
+}
