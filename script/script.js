@@ -115,6 +115,48 @@ function updateCount(n) {
 }
 
 /* ─────────────────────────────────────────────
+   FAVORITES helpers
+───────────────────────────────────────────── */
+function getFavs() {
+    return JSON.parse(localStorage.getItem("favorites")) || [];
+}
+
+function saveFavs(favs) {
+    localStorage.setItem("favorites", JSON.stringify(favs));
+    updateFavCount();
+}
+
+function isFavorite(id) {
+    return getFavs().some(m => m.id === id);
+}
+
+function updateFavCount() {
+    const n = getFavs().length;
+    if (favCountEl) favCountEl.textContent = n;
+}
+
+function toggleFavorite(movie, btn) {
+    let favs = getFavs();
+    const exists = favs.some(m => m.id === movie.id);
+
+    if (exists) {
+        favs = favs.filter(m => m.id !== movie.id);
+    } else {
+        favs.push(movie);
+    }
+
+    saveFavs(favs);
+    const saved = !exists;
+
+    if (btn) btn.classList.toggle("active", saved);
+
+    const cardBtn = moviesContainer.querySelector(`.fav-btn[data-id="${movie.id}"]`);
+    if (cardBtn) cardBtn.classList.toggle("active", saved);
+
+    if (!favPanel.classList.contains("hidden")) renderFavPanel();
+}
+
+/* ─────────────────────────────────────────────
     SHOW MOVIES
 ───────────────────────────────────────────── */
 function showMovies(movies) {
