@@ -115,7 +115,7 @@ function updateCount(n) {
 }
 
 /* ─────────────────────────────────────────────
-   FAVORITES helpers
+    FAVORITES
 ───────────────────────────────────────────── */
 function getFavs() {
     return JSON.parse(localStorage.getItem("favorites")) || [];
@@ -218,4 +218,62 @@ function showMovies(movies) {
     });
 
     moviesContainer.appendChild(fragment);
+}
+
+/* ─────────────────────────────────────────────
+    MODAL-WINDOW
+───────────────────────────────────────────── */
+async function openMovieDetails(movie) {
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+
+    const fav = isFavorite(movie.id);
+    const year = movie.release_date ? movie.release_date.slice(0, 4) : "—";
+
+    modalBody.innerHTML = `
+        <div class="modal-header">
+            <div class="modal-poster-wrap">
+                <img src="${movie.poster_path ? IMG_URL + movie.poster_path : NO_IMG}" alt="${movie.title}">
+            </div>
+            <div class="modal-meta">
+                <h2>${movie.title}</h2>
+                <div class="modal-tags">
+                    <span class="tag ${getColor(movie.vote_average)}">★ ${movie.vote_average.toFixed(1)}</span>
+                    <span class="tag">${year}</span>
+                    ${movie.original_language ? `<span class="tag">${movie.original_language.toUpperCase()}</span>` : ""}
+                </div>
+                <p class="modal-overview">${movie.overview || "Descriere indisponibilă."}</p>
+                <button class="btn-fav ${fav ? "active" : ""}" id="modal-fav-btn">
+                    ${fav ? "♥ Salvat" : "♡ Adaugă la favorite"}
+                </button>
+            </div>
+        </div>
+        <div class="modal-trailer" id="trailer-container">
+            <div class="loading" style="padding:28px 0">
+                <div class="spinner"></div>
+            </div>
+        </div>
+    `;
+
+    document.getElementById("modal-fav-btn").addEventListener("click", (e) => {
+        toggleFavorite(movie, e.currentTarget);
+        const saved = isFavorite(movie.id);
+        e.currentTarget.textContent = saved ? "♥ Salvat" : "♡ Adaugă la favorite";
+        e.currentTarget.classList.toggle("active", saved);
+    });
+
+    const data = await fetchJSON(`${BASE_URL}/movie/${movie.id}/videos?api_key=${API_KEY}`);
+    const trailer = data?.results?.find(v => v.type === "Trailer" && v.site === "YouTube");
+
+    document.getElementById("trailer-container").innerHTML = trailer
+        ? `<p class="trailer-label">Trailer</p>
+            <iframe src="https://www.youtube.com/embed/${trailer.key}?rel=0"
+                allowfullscreen></iframe>`
+        : `<p class="no-trailer">Nu există trailer disponibil.</p>`;
+}
+
+function closeModal() {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+    modalBody.innerHTML = "";
 }
