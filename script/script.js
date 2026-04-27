@@ -113,3 +113,67 @@ function showError(msg) {
 function updateCount(n) {
     if (countLabel) countLabel.textContent = `${n} film${n !== 1 ? "e" : ""}`;
 }
+
+/* ─────────────────────────────────────────────
+   SHOW MOVIES
+───────────────────────────────────────────── */
+function showMovies(movies) {
+    currentMovies = movies;
+    moviesContainer.innerHTML = "";
+    updateCount(movies.length);
+
+    if (!movies || movies.length === 0) {
+        moviesContainer.innerHTML = `
+            <div class="no-results">
+                <span>😢</span>
+                <p>Nu s-a găsit nimic</p>
+            </div>`;
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    movies.forEach((movie, i) => {
+        const { title, poster_path, vote_average, release_date, id } = movie;
+        const year = release_date ? release_date.slice(0, 4) : "—";
+        const fav  = isFavorite(id);
+        const isTop = vote_average >= 8;
+
+        const el = document.createElement("div");
+        el.classList.add("movie");
+        el.dataset.id = id;
+        el.style.animationDelay = `${Math.min(i * 30, 300)}ms`;
+
+        el.innerHTML = `
+            <div class="movie-thumb">
+                ${isTop ? `<div class="movie-badge">TOP</div>` : ""}
+                <img src="${poster_path ? IMG_URL + poster_path : NO_IMG}"
+                     alt="${title}" loading="lazy">
+                <div class="movie-overlay"></div>
+                <button class="fav-btn ${fav ? "active" : ""}"
+                        data-id="${id}" title="${fav ? "Elimină din favorite" : "Adaugă la favorite"}">♥</button>
+            </div>
+            <div class="movie-info">
+                <h3 title="${title}">${title}</h3>
+                <div class="rating-row">
+                    <span class="rating ${getColor(vote_average)}">★ ${vote_average.toFixed(1)}</span>
+                    <span class="year">${year}</span>
+                </div>
+            </div>
+        `;
+
+        el.addEventListener("click", (e) => {
+            if (e.target.closest(".fav-btn")) return;
+            openMovieDetails(movie);
+        });
+
+        el.querySelector(".fav-btn").addEventListener("click", (e) => {
+            e.stopPropagation();
+            toggleFavorite(movie, e.currentTarget);
+        });
+
+        fragment.appendChild(el);
+    });
+
+    moviesContainer.appendChild(fragment);
+}
