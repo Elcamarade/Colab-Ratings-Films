@@ -323,3 +323,63 @@ function renderFavPanel() {
 
     favList.appendChild(frag);
 }
+
+/* ─────────────────────────────────────────────
+    EVENTS
+───────────────────────────────────────────── */
+// Modal close
+closeBtn.onclick = closeModal;
+modal.querySelector(".modal-overlay").addEventListener("click", closeModal);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+// Search
+let timeout;
+searchInput.addEventListener("input", (e) => {
+    const value = e.target.value.trim();
+    searchClear.classList.toggle("hidden", !value);
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        if (value) searchMovies(value);
+        else getPopularMovies();
+    }, 500);
+});
+
+searchClear.addEventListener("click", () => {
+    searchInput.value = "";
+    searchClear.classList.add("hidden");
+    getPopularMovies();
+    searchInput.focus();
+});
+
+// Filters
+document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.dataset.rate;
+        applyFilterSortAndShow(allMoviesSnapshot);
+    });
+});
+
+// Sort
+sortSelect.addEventListener("change", () => {
+    activeSort = sortSelect.value;
+    applyFilterSortAndShow(allMoviesSnapshot);
+});
+
+// Favorites panel
+favNavBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    favPanel.classList.toggle("hidden");
+    if (!favPanel.classList.contains("hidden")) renderFavPanel();
+});
+
+favPanelClose.addEventListener("click", () => {
+    favPanel.classList.add("hidden");
+});
+
+/* ─────────────────────────────────────────────
+    INIT
+───────────────────────────────────────────── */
+updateFavCount();
+getPopularMovies();
