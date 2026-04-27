@@ -59,3 +59,29 @@ async function searchMovies(query) {
         applyFilterSortAndShow(data.results);
     }
 }
+
+/* ─────────────────────────────────────────────
+   FILTER + SORT
+───────────────────────────────────────────── */
+function applyFilterSortAndShow(movies) {
+    let result = [...movies];
+
+    if (activeFilter === "all") {
+       
+    } else if (activeFilter === "0") {
+        result = result.filter(m => m.vote_average < 5);
+    } else {
+        result = result.filter(m => m.vote_average >= Number(activeFilter));
+    }
+
+ 
+    switch (activeSort) {
+        case "rating-desc": result.sort((a, b) => b.vote_average - a.vote_average); break;
+        case "rating-asc":  result.sort((a, b) => a.vote_average - b.vote_average); break;
+        case "year-desc":   result.sort((a, b) => (b.release_date || "").localeCompare(a.release_date || "")); break;
+        case "year-asc":    result.sort((a, b) => (a.release_date || "").localeCompare(b.release_date || "")); break;
+        default: break; 
+    }
+
+    showMovies(result);
+}
