@@ -210,6 +210,21 @@ header {
     color: var(--muted2);
 }
 
+#search:-webkit-autofill,
+#search:-webkit-autofill:hover,
+#search:-webkit-autofill:focus,
+#search:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--bg2) inset !important;
+    -webkit-text-fill-color: var(--text) !important;
+    border: none;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+#search::selection {
+    background: rgba(229, 9, 20, 0.25);
+    color: var(--text);
+}
+
 .search-clear {
     background: none;
     border: none;
