@@ -115,7 +115,7 @@ function updateCount(n) {
 }
 
 /* ─────────────────────────────────────────────
-   SHOW MOVIES
+    SHOW MOVIES
 ───────────────────────────────────────────── */
 function showMovies(movies) {
     currentMovies = movies;
@@ -136,7 +136,7 @@ function showMovies(movies) {
     movies.forEach((movie, i) => {
         const { title, poster_path, vote_average, release_date, id } = movie;
         const year = release_date ? release_date.slice(0, 4) : "—";
-        const fav  = isFavorite(id);
+        const fav = isFavorite(id);
         const isTop = vote_average >= 8;
 
         const el = document.createElement("div");
@@ -148,7 +148,7 @@ function showMovies(movies) {
             <div class="movie-thumb">
                 ${isTop ? `<div class="movie-badge">TOP</div>` : ""}
                 <img src="${poster_path ? IMG_URL + poster_path : NO_IMG}"
-                     alt="${title}" loading="lazy">
+                    alt="${title}" loading="lazy">
                 <div class="movie-overlay"></div>
                 <button class="fav-btn ${fav ? "active" : ""}"
                         data-id="${id}" title="${fav ? "Elimină din favorite" : "Adaugă la favorite"}">♥</button>
